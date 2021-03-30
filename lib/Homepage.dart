@@ -1,11 +1,7 @@
 import 'dart:async';
 
 import 'package:contact_app/voiceFile.dart';
-import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:battery/battery.dart';
-
-import 'contacts.dart';
 
 class Mainpage extends StatefulWidget {
   const Mainpage({Key? key}) : super(key: key);
@@ -23,7 +19,10 @@ class _MainpageState extends State<Mainpage> {
       'Home',
       style: (optionStyle),
     ),
-    Contacts_PA(),
+    Text(
+      'Contacts',
+      style: (optionStyle),
+    ),
     Voicepage(),
   ];
 

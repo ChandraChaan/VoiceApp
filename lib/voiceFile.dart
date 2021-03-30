@@ -13,21 +13,10 @@ class _VoicepageState extends State<Voicepage> {
   final Battery _battery = Battery();
 
   BatteryState? _batteryState;
-  late StreamSubscription<BatteryState> _batteryStateSubscription;
-  Future _deviceInf() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    print('Running on ${androidInfo.model}');  // e.g. "Moto G (4)"
-
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    print('Running on ${iosInfo.utsname.machine}');
-  }
 
   @override
   void initState() {
     super.initState();
-    _deviceInf();
-    _batteryStateSubscription =
         _battery.onBatteryStateChanged.listen((BatteryState state) {
           setState(() {
             _batteryState = state;
@@ -39,9 +28,6 @@ class _VoicepageState extends State<Voicepage> {
   @override
   void dispose() {
     super.dispose();
-    if (_batteryStateSubscription != null) {
-      _batteryStateSubscription.cancel();
-    }
   }
 
 
