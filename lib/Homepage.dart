@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:contact_app/voiceFile.dart';
 import 'package:flutter/material.dart';
 
+import 'Gallary_like/main_page_gallery.dart';
+import 'contacts_details/Contacts_view.dart';
+import 'contacts_details/SeeContacts.dart';
+
 class Mainpage extends StatefulWidget {
   const Mainpage({Key? key}) : super(key: key);
   @override
@@ -15,15 +19,13 @@ class _MainpageState extends State<Mainpage> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color:Colors.blue,);
   List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: (optionStyle),
-    ),
-    Text(
-      'Contacts',
-      style: (optionStyle),
-    ),
+    main_gallaery_page(),
+    SeeContactsButton(),
     Voicepage(),
+    Text(
+      'Settings',
+      style: (optionStyle),
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -59,9 +61,14 @@ class _MainpageState extends State<Mainpage> {
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.videogame_asset),
+            label: 'Game like',
+            backgroundColor: Colors.pink,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-            backgroundColor: Colors.pink,
+            backgroundColor: Colors.lightGreenAccent,
           ),
         ],
         currentIndex: _selectedIndex,

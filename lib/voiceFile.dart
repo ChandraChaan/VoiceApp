@@ -36,7 +36,12 @@ class _VoicepageState extends State<Voicepage> {
 
   int index = 0;
   double marginvalue = 1;
-  void changeIndex() {
+  void changeIndex() async {
+    final int batteryLevel = await _battery.batteryLevel;
+    var Msg =  batteryLevel == null ? 'no battery' : batteryLevel;
+    print('this is battery ');
+    print (batteryLevel);
+
     setState(() => index = random.nextInt(colors.length));
     if(marginvalue <= Responcesize){
       print('Now it is using marginvalue: ${marginvalue}');
@@ -53,21 +58,16 @@ class _VoicepageState extends State<Voicepage> {
 
   Future<void> _showMyDialog() async {
     final int batteryLevel = await _battery.batteryLevel;
+    var Msg =  batteryLevel == null ? 'no battery' : batteryLevel;
+    print('this is battery ');
+    print (batteryLevel);
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: colors[index],
-          title: Text('Battery: $batteryLevel%', style: TextStyle(color: colors[index] == Colors.white ? Colors.black : Colors.white),),
-          // content: SingleChildScrollView(
-          //   child: ListBody(
-          //     children: <Widget>[
-          //       Text('So, now its not decrease size', style: TextStyle(color: colors[index] == Colors.white ? Colors.black : Colors.white),),
-          //       // Text('Would you like to approve of this message?'),
-          //     ],
-          //   ),
-          // ),
+          title: Text('Battery: $Msg%', style: TextStyle(color: colors[index] == Colors.white ? Colors.black : Colors.white),),
           actions: <Widget>[
             TextButton(
               child: Text('OK', style: TextStyle(color: colors[index] == Colors.white ? Colors.black : Colors.white),),
